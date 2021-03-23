@@ -30,10 +30,5 @@ public class Controlador {
             texto += v.toString() + "\n";
         }
         return texto ;
-    }
-    
-    
-    
-    
-    
+    } 
 }

@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/Alcatriz/src/Herencia/Pc.java</file>
-            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/Alcatriz/src/Herencia/Equipo.java</file>
-            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/Alcatriz/src/Herencia/Servidor.java</file>
-            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/Alcatriz/src/Ventanas/Inicio.java</file>
-            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/Alcatriz/src/Herencia/Impresora.java</file>
+            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/3ºTrimestre/src/Vista/Inicio.java</file>
+            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/3ºTrimestre/src/Controlador/Controlador.java</file>
+            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/3ºTrimestre/src/Modelo/Pc.java</file>
+            <file>file:/C:/Users/Juanfran/Documents/NetBeansProjects/3ºTrimestre/src/Modelo/Servidor.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,9 @@ package Vista;
 
 import Controlador.Controlador;
 import Modelo.Equipo;
+import Modelo.Impresora;
+import Modelo.Pc;
+import Modelo.Servidor;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +18,15 @@ import java.util.ArrayList;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
+   
     public Inicio() {
         initComponents();
         controlador = new Controlador();
+           /* 
+        jTextFieldTipoOrdenador.setVisible(false);
+           jTextFieldSSOO.setVisible(false);
+           jTextFieldAnoCompraServidor.setVisible(false);
+           jTextFieldTipoImpresora.setVisible(false);*/
     }
 
     /**
@@ -32,6 +38,7 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupTipoEquipo = new javax.swing.ButtonGroup();
         jLabelFormulario = new javax.swing.JLabel();
         jTextFieldCodigoEquipo = new javax.swing.JTextField();
         jTextFieldUbicacion = new javax.swing.JTextField();
@@ -41,8 +48,22 @@ public class Inicio extends javax.swing.JFrame {
         jButtonVerEquipos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jTextFieldSSOO = new javax.swing.JTextField();
+        jTextFieldTipoOrdenador = new javax.swing.JTextField();
+        jTextFieldTipoImpresora = new javax.swing.JTextField();
+        jTextFieldAnoCompraServidor = new javax.swing.JTextField();
+        jRadioButtonPC = new javax.swing.JRadioButton();
+        jRadioButtonImpresora = new javax.swing.JRadioButton();
+        jRadioButtonServidor = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jLabelFormulario.setText("Datos Equipo nuevo");
 
@@ -62,8 +83,24 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jTextFieldUbicacion.setText("Ubicación");
+        jTextFieldUbicacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldUbicacionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldUbicacionFocusLost(evt);
+            }
+        });
 
         jTextFieldPrecio.setText("Precio");
+        jTextFieldPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldPrecioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPrecioFocusLost(evt);
+            }
+        });
 
         jCheckBoxProtegido.setText("Protegido");
 
@@ -86,52 +123,162 @@ public class Inicio extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jTextFieldSSOO.setText("SSOO");
+        jTextFieldSSOO.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldSSOOFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldSSOOFocusLost(evt);
+            }
+        });
+
+        jTextFieldTipoOrdenador.setText("Tipo ");
+        jTextFieldTipoOrdenador.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldTipoOrdenadorFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldTipoOrdenadorFocusLost(evt);
+            }
+        });
+
+        jTextFieldTipoImpresora.setText("Tipo Impresora");
+        jTextFieldTipoImpresora.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldTipoImpresoraFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldTipoImpresoraFocusLost(evt);
+            }
+        });
+
+        jTextFieldAnoCompraServidor.setText("Año de compra");
+        jTextFieldAnoCompraServidor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldAnoCompraServidorFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldAnoCompraServidorFocusLost(evt);
+            }
+        });
+
+        buttonGroupTipoEquipo.add(jRadioButtonPC);
+        jRadioButtonPC.setText("Pc");
+        jRadioButtonPC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButtonPCMouseClicked(evt);
+            }
+        });
+
+        buttonGroupTipoEquipo.add(jRadioButtonImpresora);
+        jRadioButtonImpresora.setText("Impresora");
+        jRadioButtonImpresora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButtonImpresoraMouseClicked(evt);
+            }
+        });
+        jRadioButtonImpresora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRadioButtonImpresoraKeyPressed(evt);
+            }
+        });
+
+        buttonGroupTipoEquipo.add(jRadioButtonServidor);
+        jRadioButtonServidor.setText("Servidor");
+        jRadioButtonServidor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButtonServidorMouseClicked(evt);
+            }
+        });
+        jRadioButtonServidor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRadioButtonServidorKeyPressed(evt);
+            }
+        });
+
+        jLabel1.setText("Selecciona un tipo de equipo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonAñadirEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBoxProtegido, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCodigoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                    .addComponent(jLabelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldTipoOrdenador)
+                            .addComponent(jTextFieldSSOO, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(jTextFieldAnoCompraServidor, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(54, 54, 54)
+                        .addComponent(jTextFieldTipoImpresora, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addGap(266, 266, 266)
                         .addComponent(jButtonVerEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButtonPC)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButtonImpresora)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButtonServidor))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonAñadirEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonVerEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldCodigoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCodigoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jRadioButtonPC)
+                                .addComponent(jRadioButtonImpresora)
+                                .addComponent(jRadioButtonServidor)))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldSSOO, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldTipoImpresora, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBoxProtegido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAñadirEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 16, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldTipoOrdenador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBoxProtegido)
+                            .addComponent(jTextFieldAnoCompraServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAñadirEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 48, Short.MAX_VALUE)
+                        .addComponent(jButtonVerEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
@@ -142,11 +289,36 @@ public class Inicio extends javax.swing.JFrame {
         double precio;
         boolean protegido;
         cod = jTextFieldCodigoEquipo.getText();
+        jTextFieldCodigoEquipo.setText("Código Equipo");
         ubicacion = jTextFieldUbicacion.getText();
+        jTextFieldUbicacion.setText("Ubicación");
         precio = Double.valueOf(jTextFieldPrecio.getText());
+        jTextFieldPrecio.setText("Precio");
         protegido = jCheckBoxProtegido.isSelected();
-        Equipo e = new Equipo(cod, ubicacion, precio, protegido);
-        controlador.anadirEquipo(e);
+        jCheckBoxProtegido.setSelected(false);
+        
+        if (jRadioButtonPC.isSelected()){
+            //PC
+            String ssoo = jTextFieldSSOO.getText();
+            String tipo = jTextFieldTipoOrdenador.getText();
+            
+            Pc p = new Pc(ssoo, tipo, cod, ubicacion, precio, protegido);
+            controlador.anadirEquipo(p);
+        }else if ( jRadioButtonServidor.isSelected()){
+            //Servidor
+            String ssoo = jTextFieldSSOO.getText();
+            int anoCompra = Integer.parseInt(jTextFieldAnoCompraServidor.getText());
+            Servidor s = new Servidor(ssoo, anoCompra, cod, ubicacion, precio, protegido);
+            controlador.anadirEquipo(s);
+        }else{
+            //Impresora
+            String tipo = jTextFieldTipoImpresora.getText();
+            Impresora i = new Impresora(tipo, cod, ubicacion, precio, protegido);
+            controlador.anadirEquipo(i);
+        }
+        
+       
+       
     }//GEN-LAST:event_jButtonAñadirEquipoMouseClicked
 
     private void jButtonVerEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVerEquiposMouseClicked
@@ -169,6 +341,95 @@ public class Inicio extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jTextFieldCodigoEquipoFocusLost
 
+    private void jTextFieldUbicacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUbicacionFocusGained
+        jTextFieldUbicacion.setText("");
+    }//GEN-LAST:event_jTextFieldUbicacionFocusGained
+
+    private void jTextFieldUbicacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldUbicacionFocusLost
+        if (jTextFieldUbicacion.getText().equals("")){
+           jTextFieldUbicacion.setText("Ubicación");
+       }
+    }//GEN-LAST:event_jTextFieldUbicacionFocusLost
+
+    private void jTextFieldPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPrecioFocusGained
+        jTextFieldPrecio.setText("");
+    }//GEN-LAST:event_jTextFieldPrecioFocusGained
+
+    private void jTextFieldPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPrecioFocusLost
+         if (jTextFieldPrecio.getText().equals("")){
+           jTextFieldPrecio.setText("Precio");
+       }
+    }//GEN-LAST:event_jTextFieldPrecioFocusLost
+
+    private void jTextFieldSSOOFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldSSOOFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSSOOFocusGained
+
+    private void jTextFieldSSOOFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldSSOOFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSSOOFocusLost
+
+    private void jTextFieldTipoOrdenadorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTipoOrdenadorFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTipoOrdenadorFocusGained
+
+    private void jTextFieldTipoOrdenadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTipoOrdenadorFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTipoOrdenadorFocusLost
+
+    private void jTextFieldTipoImpresoraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTipoImpresoraFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTipoImpresoraFocusGained
+
+    private void jTextFieldTipoImpresoraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTipoImpresoraFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTipoImpresoraFocusLost
+
+    private void jTextFieldAnoCompraServidorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldAnoCompraServidorFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAnoCompraServidorFocusGained
+
+    private void jTextFieldAnoCompraServidorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldAnoCompraServidorFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAnoCompraServidorFocusLost
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+       
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jRadioButtonPCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonPCMouseClicked
+       if (jRadioButtonPC.isSelected()){
+           jTextFieldTipoOrdenador.setVisible(true);
+           jTextFieldSSOO.setVisible(true);
+           jTextFieldAnoCompraServidor.setVisible(false);
+           jTextFieldTipoImpresora.setVisible(false);
+       }
+    }//GEN-LAST:event_jRadioButtonPCMouseClicked
+
+    private void jRadioButtonImpresoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButtonImpresoraKeyPressed
+        
+    }//GEN-LAST:event_jRadioButtonImpresoraKeyPressed
+
+    private void jRadioButtonImpresoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonImpresoraMouseClicked
+        jTextFieldTipoOrdenador.setVisible(false);
+           jTextFieldSSOO.setVisible(false);
+           jTextFieldAnoCompraServidor.setVisible(false);
+           jTextFieldTipoImpresora.setVisible(true);
+    }//GEN-LAST:event_jRadioButtonImpresoraMouseClicked
+
+    private void jRadioButtonServidorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButtonServidorKeyPressed
+      
+    }//GEN-LAST:event_jRadioButtonServidorKeyPressed
+
+    private void jRadioButtonServidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonServidorMouseClicked
+          jTextFieldTipoOrdenador.setVisible(false);
+           jTextFieldSSOO.setVisible(true);
+           jTextFieldAnoCompraServidor.setVisible(true);
+           jTextFieldTipoImpresora.setVisible(false);
+    }//GEN-LAST:event_jRadioButtonServidorMouseClicked
+
+    
+    
     
     /**
      * @param args the command line arguments
@@ -207,14 +468,23 @@ public class Inicio extends javax.swing.JFrame {
 
     private Controlador controlador; 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupTipoEquipo;
     private javax.swing.JButton jButtonAñadirEquipo;
     private javax.swing.JButton jButtonVerEquipos;
     private javax.swing.JCheckBox jCheckBoxProtegido;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFormulario;
+    private javax.swing.JRadioButton jRadioButtonImpresora;
+    private javax.swing.JRadioButton jRadioButtonPC;
+    private javax.swing.JRadioButton jRadioButtonServidor;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextFieldAnoCompraServidor;
     private javax.swing.JTextField jTextFieldCodigoEquipo;
     private javax.swing.JTextField jTextFieldPrecio;
+    private javax.swing.JTextField jTextFieldSSOO;
+    private javax.swing.JTextField jTextFieldTipoImpresora;
+    private javax.swing.JTextField jTextFieldTipoOrdenador;
     private javax.swing.JTextField jTextFieldUbicacion;
     // End of variables declaration//GEN-END:variables
 }
