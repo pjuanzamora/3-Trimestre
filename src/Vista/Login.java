@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author profesor
@@ -27,11 +29,25 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelIcono = new javax.swing.JLabel();
+        jButtonEntrar = new javax.swing.JButton();
+        jTextFieldUsuario = new javax.swing.JTextField();
+        jPasswordFieldPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/entrar.png"))); // NOI18N
+        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/entrar.png"))); // NOI18N
+
+        jButtonEntrar.setText("Entrar");
+        jButtonEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEntrarMouseClicked(evt);
+            }
+        });
+
+        jTextFieldUsuario.setText("Usuario");
+
+        jPasswordFieldPassword.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -39,19 +55,52 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
-                .addComponent(jLabel1)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabelIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonEntrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordFieldPassword))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addComponent(jLabelIcono)
+                .addGap(37, 37, 37)
+                .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jButtonEntrar)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEntrarMouseClicked
+        String nombre, password="";
+        char[] pass;
+        
+        
+        nombre = jTextFieldUsuario.getText();
+        pass = jPasswordFieldPassword.getPassword();
+        
+        for (char pas : pass) {
+            password+=pas;
+        }
+        
+        if (nombre.equals(this.USUARIO) && password.equals(this.PASS)){
+            Inicio ini = new Inicio(nombre);
+            ini.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos");
+            jTextFieldUsuario.setText("Usuario");
+            jPasswordFieldPassword.setText("");
+        }
+    }//GEN-LAST:event_jButtonEntrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -88,7 +137,12 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    private final String USUARIO = "juan";
+    private final String PASS = "1234";
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonEntrar;
+    private javax.swing.JLabel jLabelIcono;
+    private javax.swing.JPasswordField jPasswordFieldPassword;
+    private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }
