@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author profesor
@@ -16,13 +19,26 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        iniciarModelos();
     }
     
     public Inicio(String usuario) {
         initComponents();
         jLabelSaludo.setText("Hola " + usuario);
+        iniciarModelos();
     }
 
+    
+    private void iniciarModelos(){
+        modeloBebidas = new DefaultComboBoxModel();
+        modeloPizzas = new DefaultComboBoxModel();
+        modeloBebidas.addElement("Colacola");
+        modeloBebidas.addElement("Agua");
+        modeloBebidas.addElement("Nestea");
+        modeloPizzas.addElement("Carbonara");
+        modeloPizzas.addElement("4 quesos");
+        modeloPizzas.addElement("Barbacoa");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +60,17 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabelSaludo.setText("Hola usuario");
 
-        jComboBoxMasas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masas:", "Fina", "Integral", "Gruesa" }));
+        jComboBoxMasas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Producto:", "Bebida", "Pizza" }));
+        jComboBoxMasas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxMasasMouseClicked(evt);
+            }
+        });
+        jComboBoxMasas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMasasActionPerformed(evt);
+            }
+        });
 
         jComboBoxIngredientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingredientes:", "Tomate", "Nata", "Oregano", "Queso" }));
 
@@ -73,15 +99,11 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jButtonEncargar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBoxIngredientes, javax.swing.GroupLayout.Alignment.LEADING, 0, 132, Short.MAX_VALUE))
                     .addComponent(jLabelSaludo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabelEncargos, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelEncargos, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,12 +133,34 @@ public class Inicio extends javax.swing.JFrame {
     private void jButtonEncargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncargarMouseClicked
         String masa, ingrediente;
         
-        masa  = (String) jComboBoxMasas.getSelectedItem();
+        masa = (String) jComboBoxMasas.getSelectedItem();
         ingrediente = (String) jComboBoxIngredientes.getSelectedItem();
         
         jTextArea1.setText(jTextArea1.getText() + "\n" + masa + " " + ingrediente);
         
     }//GEN-LAST:event_jButtonEncargarMouseClicked
+
+    private void jComboBoxMasasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxMasasMouseClicked
+       
+        
+        
+    }//GEN-LAST:event_jComboBoxMasasMouseClicked
+
+    private void jComboBoxMasasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMasasActionPerformed
+        int opc = jComboBoxMasas.getSelectedIndex();
+        
+        switch (opc){
+            case 0:
+                JOptionPane.showMessageDialog(rootPane, "Seleccione un producto","",2);
+                break;
+            case 1:
+                jComboBoxIngredientes.setModel(modeloBebidas);
+                break;
+            case 2:
+                jComboBoxIngredientes.setModel(modeloPizzas);
+                break;
+        }
+    }//GEN-LAST:event_jComboBoxMasasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,11 +192,13 @@ public class Inicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                new Inicio("Juan").setVisible(true);
             }
         });
     }
 
+    private javax.swing.DefaultComboBoxModel<String> modeloBebidas;
+    private javax.swing.DefaultComboBoxModel<String> modeloPizzas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEncargar;
     private javax.swing.JComboBox<String> jComboBoxIngredientes;
