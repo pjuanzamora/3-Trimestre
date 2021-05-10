@@ -27,21 +27,20 @@ public class IoDatos {
     
     public static void conectarBBDD(){
        
-        Connection con = null;
+        
      
+        String url = "jdbc:mysql://localhost:3306/programacion";
+        String user = "usuario";
+        String pass = "usuario";
          
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/programacion";
-            String user = "usuario";
-            String pass = "usuario";
-            con = (Connection) DriverManager.getConnection(url, user, pass);
+        try (Connection con =  DriverManager.getConnection(url, user, pass);){
+
            
             Statement s =  con.createStatement();
             ResultSet sol = s.executeQuery("SELECT * FROM alumno;");
             
             while (sol.next()){
-                System.out.println(sol.getString(1) + 
+                System.out.println(sol.getString(1) + " -- " + 
                         sol.getInt(2));
             }
             
@@ -49,13 +48,8 @@ public class IoDatos {
         } catch (Exception ex) {
             ex.printStackTrace() ;
             
-        } finally{
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(IoDatos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        } 
+        
     }
     
 }
