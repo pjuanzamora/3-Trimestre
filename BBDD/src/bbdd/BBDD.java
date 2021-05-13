@@ -5,6 +5,8 @@
  */
 package bbdd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author profesor
@@ -15,7 +17,17 @@ public class BBDD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       IoDatos.conectarBBDD();
+       //IoDatos.conectarBBDD();
+       //IoDatos.crearCampo("telefonos");
+       //IoDatos.insertarDatos();
+       
+       // IoDatos.modificarAlumno();
+        ArrayList<Alumno> vAlumnos = IoDatos.cargarDatosBBBDD();
+       // System.out.println(vAlumnos);
+        
+        //Alumno alum = new Alumno(nombre, 0, direccion)
+      // Alumno alum = new Alumno("Adelin", 22, "Avenida Aragon");
+      // IoDatos.guardarAlumno(alum);
     }
     
 }
